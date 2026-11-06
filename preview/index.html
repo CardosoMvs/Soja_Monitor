@@ -1,0 +1,534 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Transições da Soja no Brasil</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* ============================================================
+   Identidade: papel off-white, tinta verde-floresta, highlight
+   amarelo-verde — estilo editorial de relatório (ref. WRI/LAPIG).
+   Layout: banda hero floresta, strips brancos por seção.
+   Tema único claro, comprometido (design deliberado).
+   ============================================================ */
+:root {
+  --paper: #f5f6f2;
+  --surface: #ffffff;
+  --surface-soft: #edf1eb;
+  --ink: #18362d;
+  --text: #33453d;
+  --muted: #5f7169;
+  --forest: #184b39;
+  --forest-dark: #10382b;
+  --accent-highlight: #dce89b;
+  --line: #d7ddd8;
+  --ok: #1f6f46;
+  --atencao: #c97320;
+  --vazio: #8f9d95;
+  --radius: 6px;
+  --shadow-sm: 0 1px 3px rgba(16, 56, 43, 0.06);
+  --shadow-md: 0 12px 32px -16px rgba(16, 56, 43, 0.16);
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  padding-left: max(18px, env(safe-area-inset-left, 0px));
+  padding-right: max(18px, env(safe-area-inset-right, 0px));
+}
+.wrap, .band-inner { max-width: 1180px; margin: 0 auto; }
+h1, h2, h3 { color: var(--ink); font-weight: 700; letter-spacing: -0.02em; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+a { color: var(--forest); }
+.num { font-variant-numeric: tabular-nums; }
+
+/* --- nav --- */
+.site-nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: rgba(245, 246, 242, 0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.site-nav .band-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; min-height: 58px;
+}
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 800; font-size: 0.95rem; letter-spacing: -0.01em; white-space: nowrap; }
+.brand-mark {
+  width: 30px; height: 30px; border-radius: var(--radius);
+  background: var(--forest); color: var(--accent-highlight);
+  display: grid; place-items: center; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.02em;
+}
+.nav-links { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+.nav-links a {
+  color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 600;
+  padding: 6px 10px; border-radius: 4px; white-space: nowrap;
+}
+.nav-links a:hover { color: var(--forest); background: rgba(24, 75, 57, 0.06); }
+@media (max-width: 640px) { .nav-links a:not(.keep) { display: none; } }
+
+/* --- hero --- */
+.hero { background: var(--forest-dark); color: #fff; }
+.hero .band-inner { padding-block: 64px 56px; position: relative; }
+.hero-eyebrow {
+  font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--accent-highlight); margin-bottom: 14px;
+}
+.hero-eyebrow::before { content: ""; display: inline-block; width: 28px; height: 3px; background: var(--accent-highlight); margin-right: 10px; vertical-align: middle; opacity: 0.9; }
+.hero h1 { color: #fff; font-size: clamp(1.9rem, 4.6vw, 3rem); font-weight: 800; letter-spacing: -0.03em; }
+.hero h1 span { font-size: 0.72em; font-weight: 600; color: #cfe0d5; display: block; margin-top: 4px; }
+.hero-desc { max-width: 640px; color: #b9cfc2; margin-top: 16px; font-size: 1rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 700; font-size: 0.88rem; text-decoration: none;
+  border-radius: 4px; padding: 12px 18px; transition: 0.22s cubic-bezier(.22, .61, .36, 1);
+}
+.btn-primary { background: var(--accent-highlight); color: var(--forest-dark); }
+.btn-primary:hover { background: #eef6c4; }
+.btn-ghost { background: rgba(220, 232, 155, 0.12); color: #fff; border: 1px solid rgba(220, 232, 155, 0.3); }
+.btn-ghost:hover { background: rgba(220, 232, 155, 0.2); }
+.hero-badge {
+  position: absolute; right: 18px; top: 56px;
+  background: var(--accent-highlight); color: var(--forest-dark);
+  border-radius: var(--radius); padding: 12px 16px; text-align: right;
+  box-shadow: var(--shadow-md); max-width: 190px;
+}
+.hero-badge strong { display: block; font-size: 1.7rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+.hero-badge small { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+@media (max-width: 720px) { .hero-badge { position: static; margin-top: 24px; max-width: 100%; text-align: left; } }
+
+/* --- directory strip --- */
+.directory { border-bottom: 1px solid var(--line); background: var(--surface); }
+.directory .band-inner { display: grid; grid-template-columns: repeat(3, 1fr); }
+.dir-item {
+  display: grid; grid-template-columns: 32px 1fr 18px; align-items: center; gap: 12px;
+  padding: 18px 20px; text-decoration: none; color: var(--ink);
+  border-left: 1px solid var(--line); transition: background 0.22s;
+}
+.dir-item:first-child { border-left: none; }
+.dir-item:hover { background: var(--surface-soft); }
+.dir-item .n { font-size: 0.85rem; font-weight: 800; color: var(--vazio); }
+.dir-item .t { font-size: 0.88rem; font-weight: 700; }
+.dir-item .a { color: var(--forest); font-weight: 700; text-align: right; }
+@media (max-width: 720px) {
+  .directory .band-inner { grid-template-columns: 1fr; }
+  .dir-item { border-left: none; border-top: 1px solid var(--line); }
+  .dir-item:first-child { border-top: none; }
+}
+
+/* --- seções --- */
+.section { padding: 56px 0; }
+.section--alt { background: var(--surface-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.section-eyebrow {
+  font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--muted); margin-bottom: 8px;
+}
+.section-eyebrow::before { content: ""; display: inline-block; width: 28px; height: 3px; background: var(--accent-highlight); margin-right: 10px; vertical-align: middle; }
+.section-title { font-size: clamp(1.35rem, 2.6vw, 1.8rem); }
+.section-desc { max-width: 720px; color: var(--muted); margin-top: 10px; font-size: 0.95rem; }
+
+/* --- status card --- */
+.status-card {
+  margin-top: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow-sm); padding: 22px 24px;
+  display: grid; grid-template-columns: 1fr; gap: 20px;
+}
+@media (min-width: 780px) { .status-card { grid-template-columns: 1fr 2fr; } }
+.agora-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #fdeed8; color: var(--atencao); font-size: 0.72rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.08em; border-radius: 999px; padding: 5px 12px;
+}
+.pulso { width: 8px; height: 8px; border-radius: 50%; background: var(--atencao); animation: pulso 1.6s infinite; }
+@keyframes pulso { 0% { box-shadow: 0 0 0 0 rgba(201, 115, 32, 0.4); } 70% { box-shadow: 0 0 0 8px rgba(201, 115, 32, 0); } 100% { box-shadow: 0 0 0 0 rgba(201, 115, 32, 0); } }
+@media (prefers-reduced-motion: reduce) { .pulso { animation: none; } }
+.status-card h3 { font-size: 1.05rem; margin-top: 12px; }
+.status-card .sub { color: var(--muted); font-size: 0.88rem; margin-top: 6px; }
+.cobertura { font-size: 0.88rem; }
+.cobertura-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--line); }
+.cobertura-row:last-child { border-bottom: none; }
+.cobertura-row .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.dot-ok { background: var(--ok); } .dot-hoje { background: var(--atencao); } .dot-falta { background: var(--vazio); }
+.cobertura-row .lbl { font-weight: 600; color: var(--ink); min-width: 172px; }
+.cobertura-row .who { color: var(--muted); font-size: 0.84rem; }
+.track { height: 8px; border-radius: 999px; background: #dfe5df; margin-top: 4px; overflow: hidden; display: flex; }
+.track .seg-ok { background: linear-gradient(90deg, var(--ink), #3b7a57); }
+.track .seg-vazio { background: repeating-linear-gradient(45deg, #d3dad4, #d3dad4 6px, #e3e8e3 6px, #e3e8e3 12px); }
+
+/* --- stats --- */
+.stats { display: grid; gap: 14px; margin-top: 28px; grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); }
+.stat {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow-sm); padding: 18px 18px 16px;
+}
+.stat .v { font-size: 1.55rem; font-weight: 800; color: var(--ink); letter-spacing: -0.03em; line-height: 1.15; }
+.stat .v small { font-size: 0.95rem; font-weight: 700; color: var(--muted); }
+.stat .l { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-top: 6px; }
+
+/* --- ranking --- */
+.rank-legend { display: flex; flex-wrap: wrap; gap: 18px; margin: 18px 0 8px; font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+.rank-legend .key { display: inline-flex; align-items: center; gap: 7px; }
+.rank-legend .sw { width: 12px; height: 12px; border-radius: 3px; }
+.sw-virou { background: var(--forest); } .sw-deixou { background: var(--atencao); }
+.rank-list { margin-top: 6px; }
+.rank-row { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 16px; margin-top: 10px; }
+.rank-head { display: flex; align-items: baseline; gap: 12px; }
+.rank-head .uf { font-weight: 700; color: var(--ink); font-size: 0.92rem; }
+.rank-head .pos { font-size: 0.78rem; font-weight: 800; color: var(--vazio); min-width: 24px; }
+.rank-head .val { margin-left: auto; font-weight: 700; color: var(--ink); font-size: 0.92rem; white-space: nowrap; }
+.rank-head .val small { color: var(--muted); font-weight: 600; font-size: 0.78rem; }
+.bars { margin-top: 8px; display: grid; gap: 5px; }
+.bars .bar { height: 9px; border-radius: 3px; background: var(--forest); }
+.bars .bar.deixou { background: var(--atencao); height: 6px; }
+.bar-track { position: relative; }
+.bar-zero-fill { background: var(--vazio); height: 6px; width: 100%; opacity: 0.35; border-radius: 3px; }
+
+/* --- composição Brasil --- */
+.comp-wrap { margin-top: 34px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: 20px 22px; }
+.stack { display: flex; height: 26px; border-radius: 4px; overflow: hidden; background: var(--surface-soft); }
+.stack .seg { min-width: 0; }
+.comp-legend { display: grid; gap: 6px; margin-top: 16px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.comp-item { display: flex; align-items: center; gap: 9px; font-size: 0.84rem; }
+.comp-item .sw { width: 11px; height: 11px; border-radius: 3px; flex: none; }
+.comp-item .nm { color: var(--ink); font-weight: 600; min-width: 0; }
+.comp-item .pv { margin-left: auto; color: var(--muted); white-space: nowrap; }
+
+/* --- detalhe estado --- */
+.sel-row { margin-top: 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.sel-row label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+#estado-select {
+  font-family: var(--font); font-size: 0.95rem; font-weight: 600; color: var(--ink);
+  padding: 9px 12px; border-radius: 4px; border: 1px solid var(--line); background: var(--surface);
+  min-width: 230px;
+}
+#estado-select:focus-visible, .dir-item:focus-visible, a:focus-visible { outline: 2px solid var(--forest); outline-offset: 2px; }
+.state-panel { margin-top: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: 22px 24px; }
+.state-tot { display: flex; flex-wrap: wrap; gap: 26px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.state-tot .kv .k { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.state-tot .kv .n { font-size: 1.25rem; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; }
+.state-cols { display: grid; gap: 28px; margin-top: 20px; }
+@media (min-width: 780px) { .state-cols { grid-template-columns: 1fr 1fr; } }
+.state-cols h3 { font-size: 0.95rem; }
+.state-cols .hint { font-size: 0.8rem; color: var(--muted); margin: 4px 0 12px; }
+.cls-list { display: grid; gap: 9px; }
+.cls-item { display: grid; grid-template-columns: 12px 1fr; gap: 10px; align-items: center; }
+.cls-item .sw { width: 11px; height: 11px; border-radius: 3px; margin-top: 4px; }
+.cls-item .line { display: flex; align-items: baseline; gap: 10px; font-size: 0.86rem; }
+.cls-item .line .nm { color: var(--ink); font-weight: 600; min-width: 0; }
+.cls-item .line .v { margin-left: auto; color: var(--muted); white-space: nowrap; font-size: 0.82rem; }
+.cls-item .cbar { grid-column: 2; height: 6px; border-radius: 3px; background: var(--surface-soft); overflow: hidden; }
+.cls-item .cbar i { display: block; height: 100%; border-radius: 3px; }
+.state-empty { padding: 30px 6px; color: var(--muted); font-size: 0.92rem; }
+
+/* --- tabela --- */
+.table-container { overflow-x: auto; margin-top: 26px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 0.84rem; }
+thead th {
+  position: sticky; top: 0; background: var(--surface-soft); color: var(--forest);
+  font-size: 0.74rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
+  text-align: right; padding: 11px 14px; border-bottom: 1px solid var(--line); white-space: nowrap;
+}
+thead th:first-child, tbody td:first-child { text-align: left; }
+tbody td { padding: 9px 14px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+tbody tr:hover { background: rgba(24, 75, 57, 0.03); }
+tbody tr.sem-dados td { color: var(--vazio); }
+tbody td .uf-nome { font-weight: 700; color: var(--ink); }
+.tag-ok, .tag-pend { font-size: 0.7rem; font-weight: 700; border-radius: 999px; padding: 2px 8px; white-space: nowrap; }
+.tag-ok { background: #e4efe0; color: var(--ok); }
+.tag-pend { background: #edf1eb; color: var(--vazio); }
+
+/* --- metodologia / footer --- */
+.met-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: 22px 24px; margin-top: 26px; }
+.met-card h3 { font-size: 1rem; margin-bottom: 8px; }
+.met-card p, .met-card li { font-size: 0.9rem; color: var(--text); }
+.met-card ul { margin: 8px 0 0; padding-left: 20px; }
+.met-card li + li { margin-top: 6px; }
+.site-footer { border-top: 1px solid var(--line); background: var(--surface); }
+.site-footer .band-inner { padding-block: 34px 38px; text-align: center; }
+.site-footer .strong { color: var(--ink); font-weight: 700; font-size: 0.92rem; }
+.site-footer .soft { color: var(--muted); font-size: 0.8rem; margin-top: 6px; }
+.footer-brand { display: inline-grid; grid-template-columns: 34px 34px 34px; gap: 8px; margin-bottom: 14px; }
+.footer-brand span { height: 34px; border-radius: 4px; display: grid; place-items: center; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.02em; }
+.fb-1 { background: var(--forest); color: var(--accent-highlight); }
+.fb-2 { background: var(--surface-soft); color: var(--forest); border: 1px solid var(--line); }
+.fb-3 { background: var(--accent-highlight); color: var(--forest-dark); }
+</style>
+
+<body>
+<div id="topo"></div>
+
+<nav class="site-nav" aria-label="Navegação principal">
+  <div class="band-inner wrap">
+    <a class="brand" href="#topo"><span class="brand-mark">39</span> Transições da Soja no Brasil</a>
+    <div class="nav-links">
+      <a href="#visao-geral">Visão geral</a>
+      <a href="#ranking">Ranking</a>
+      <a class="keep" href="#estados">Por estado</a>
+      <a class="keep" href="#metodologia">Metodologia</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="band-inner wrap">
+    <div class="hero-eyebrow">Soja (classe 39) · MapBiomas · GEE</div>
+    <h1>De onde veio e para onde foi<br><span>a soja brasileira, 2018 → 2024</span></h1>
+    <p class="hero-desc">Transições de uso da terra da classe Soja (39) em cada unidade federativa: áreas que <strong style="color:#fff">viraram soja</strong>, áreas que <strong style="color:#fff">deixaram de ser soja</strong> e a área que permaneceu cultivada, com a composição por classe de uso de origem e destino.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#ranking">Ver ranking estadual</a>
+      <a class="btn btn-ghost" href="#estados">Explorar por estado</a>
+    </div>
+    <div class="hero-badge num"><strong id="badge-valor">—</strong><small>viraram soja · 2018–2024</small></div>
+  </div>
+</header>
+
+<div class="directory">
+  <div class="band-inner wrap">
+    <a class="dir-item" href="#ranking"><span class="n">01</span><span class="t">Ranking e origens no Brasil</span><span class="a">→</span></a>
+    <a class="dir-item" href="#estados"><span class="n">02</span><span class="t">Detalhe por unidade federativa</span><span class="a">→</span></a>
+    <a class="dir-item" href="#metodologia"><span class="n">03</span><span class="t">Metodologia e disponibilidade</span><span class="a">→</span></a>
+  </div>
+</div>
+
+<section class="section" id="visao-geral">
+  <div class="wrap band-inner">
+    <div class="section-eyebrow">Panorama nacional</div>
+    <h2 class="section-title">O balanço do biênio, em números</h2>
+    <p class="section-desc">Totais agregados sobre as 27 unidades federativas (25 já processadas). Valores em hectares, medidos sobre malhas de 10 m.</p>
+
+    <div class="status-card">
+      <div>
+        <span class="agora-pill"><span class="pulso"></span> Cobertura atual</span>
+        <h3>Processamento em andamento</h3>
+        <p class="sub">As 27 unidades federativas foram cortadas na mesma janela 2018 → 2024. Pendências destacadas abaixo.</p>
+      </div>
+      <div class="cobertura">
+        <div class="cobertura-row"><span class="dot dot-ok"></span><span class="lbl">Com transições registradas</span><span class="who" id="cob-ok">—</span></div>
+        <div class="cobertura-row"><span class="dot dot-ok"></span><span class="lbl">Zero transições (soja ausente)</span><span class="who" id="cob-zero">—</span></div>
+        <div class="cobertura-row"><span class="dot dot-falta"></span><span class="lbl">Sem processamento ainda</span><span class="who">Maranhão · Pará</span></div>
+        <div class="track" aria-hidden="true"><span class="seg-ok" id="trk-ok"></span><span class="seg-vazio" style="flex:1"></span></div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="v num" id="st-virou">—</div><div class="l">Viraram soja (ha)</div></div>
+      <div class="stat"><div class="v num" id="st-deixou">—</div><div class="l">Deixaram de ser soja (ha)</div></div>
+      <div class="stat"><div class="v num" id="st-perm">—</div><div class="l">Permaneceram soja (ha)</div></div>
+      <div class="stat"><div class="v num" id="st-saldo">—</div><div class="l">Saldo líquido (ha)</div></div>
+      <div class="stat"><div class="v num" id="st-ufs">—</div><div class="l">UFs com transições</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt" id="ranking">
+  <div class="wrap band-inner">
+    <div class="section-eyebrow">Onde a soja avançou</div>
+    <h2 class="section-title">Ranking estadual da expansão</h2>
+    <p class="section-desc">Área que virou soja entre 2018 e 2024 (barra verde) e a que deixou de ser soja no mesmo período (barra âmbar), em hectares.</p>
+    <div class="rank-legend">
+      <span class="key"><span class="sw sw-virou"></span> Virou soja</span>
+      <span class="key"><span class="sw sw-deixou"></span> Deixou de ser soja</span>
+    </div>
+    <div class="rank-list" id="rank-list"></div>
+
+    <div class="comp-wrap">
+      <h3 style="font-size:1rem">De onde veio a soja no Brasil</h3>
+      <p style="font-size:0.85rem;color:var(--muted);margin-top:4px">Composição acumulada das áreas que viraram soja (6,8 M ha), pelas classes de uso de origem.</p>
+      <div class="stack" id="comp-bar" style="margin-top:14px"></div>
+      <div class="comp-legend" id="comp-legend"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="estados">
+  <div class="wrap band-inner">
+    <div class="section-eyebrow">Ficha por unidade federativa</div>
+    <h2 class="section-title">Detalhe por estado</h2>
+    <p class="section-desc">As classes que mais alimentaram a expansão da soja e as classes para onde a soja recuou, na unidade selecionada.</p>
+    <div class="sel-row">
+      <label for="estado-select">Selecionar UF</label>
+      <select id="estado-select"></select>
+    </div>
+    <div class="state-panel" id="state-panel"></div>
+  </div>
+</section>
+
+<section class="section section--alt" id="metodologia">
+  <div class="wrap band-inner">
+    <div class="section-eyebrow">Método e disponibilidade</div>
+    <h2 class="section-title">Como os números foram gerados</h2>
+    <div class="met-card">
+      <h3>Classificação e pós-processamento</h3>
+      <ul>
+        <li>A série usa a classe <strong>Soja (39)</strong> do MapBiomas como foco, cruzada com o uso da terra em <strong>2018</strong> (origem) e em <strong>2024</strong> (destino), processada no Google Earth Engine sobre malhas de <strong>10 m</strong>.</li>
+        <li>“Virou soja” = classe 39 em 2024 onde havia outra classe em 2018. “Deixou de ser soja” = outra classe em 2024 onde havia classe 39 em 2018. “Permaneceu soja” = classe 39 nos dois anos.</li>
+        <li>Áreas em hectares, somadas por classe dentro de cada UF; pequenas somas podem refletir arredondamento de pixels.</li>
+        <li>Maranhão e Pará ainda não passaram pelo processamento — as linhas ficam marcadas como <em>sem dados ainda</em>, e a página será atualizada quando entrarem.</li>
+        <li>UFs com arquivo vazio (<span id="cob-zero2">—</span>) não registraram transições: a presença de soja nesses estados é irrelevante nessa série.</li>
+        <li>As cores das classes são <em>indicativas</em>, apenas para leitura visual — não seguem a legenda oficial do MapBiomas.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="band-inner wrap">
+    <div class="footer-brand" aria-hidden="true"><span class="fb-1">39</span><span class="fb-2">GEE</span><span class="fb-3">soja</span></div>
+    <p class="strong">Transições da Soja no Brasil · 2018 → 2024</p>
+    <p class="soft">Dados derivados da classe Soja (39) do MapBiomas · processados no Google Earth Engine · atualizado em novembro de 2026</p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  "use strict";
+  var fmt = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 0 });
+
+  /* cores indicativas por classe (não oficiais MapBiomas) */
+  var CORES = {
+    3: "#2e7d5b", 4: "#79c486", 6: "#5fb37a", 9: "#6f8fb5", 11: "#7aa6c2",
+    12: "#a8c48a", 13: "#c9dfae", 15: "#d9c87c", 21: "#9aa5a0", 24: "#c06058",
+    25: "#b9b1a3", 30: "#8d9298", 31: "#5f7fa8", 33: "#7aa6c2", 40: "#e2b93b",
+    41: "#dcc06a", 48: "#c49a4f", 49: "#4d9e78", 50: "#90c290", 75: "#b58fb5",
+    91: "#8f9d95", 62: "#c9b6d9"
+  };
+  var PALETA = ["#2e7d5b", "#d9c87c", "#9aa5a0", "#dcc06a", "#6f8fb5", "#a8c48a", "#c06058", "#e2b93b", "#5fb37a", "#b58fb5"];
+  function corCls(c) {
+    if (CORES[c.classe_id] != null) return CORES[c.classe_id];
+    var h = 0, s = String(c.classe);
+    for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+    return PALETA[h % PALETA.length];
+  }
+
+  function ha(v) { return fmt.format(Math.round(v || 0)) + " ha"; }
+  function resumo(v) {
+    v = v || 0;
+    if (v >= 1e6) return (v / 1e6).toFixed(2).replace(".", ",") + " M ha";
+    if (v >= 1e4) return Math.round(v / 1e3) + " mil ha";
+    if (v >= 1e3) return (v / 1e3).toFixed(1).replace(".", ",") + " mil ha";
+    return fmt.format(Math.round(v)) + " ha";
+  }
+
+  var ES = DADOS.estados;
+  var ok = ES.filter(function (e) { return e.comDados; });
+  var zero = ES.filter(function (e) { return !e.comDados; });
+  var T = {
+    virou: ok.reduce(function (a, e) { return a + e.virou; }, 0),
+    deixou: ok.reduce(function (a, e) { return a + e.deixou; }, 0),
+    perm: ok.reduce(function (a, e) { return a + e.perm; }, 0)
+  };
+  document.getElementById("badge-valor").textContent = resumo(T.virou);
+  document.getElementById("st-virou").textContent = resumo(T.virou);
+  document.getElementById("st-deixou").textContent = resumo(T.deixou);
+  document.getElementById("st-perm").textContent = resumo(T.perm);
+  document.getElementById("st-saldo").textContent = resumo(T.virou - T.deixou);
+  document.getElementById("st-ufs").textContent = ok.length + " de 27";
+  document.getElementById("cob-ok").textContent = ok.filter(function (e) { return e.ano !== "2025"; }).length + " UFs";
+  document.getElementById("cob-zero").textContent = zero.map(function (e) { return e.label; }).join(" · ") || "—";
+  document.getElementById("cob-zero2").textContent = zero.map(function (e) { return e.label; }).join(", ") || "—";
+  var pctOk = Math.round(100 * ok.length / ES.length);
+  document.getElementById("trk-ok").style.width = pctOk + "%";
+
+  /* ranking */
+  var rank = ok.slice().sort(function (a, b) { return b.virou - a.virou; });
+  var maxV = rank.length ? rank[0].virou : 1;
+  var maxD = ok.reduce(function (a, e) { return Math.max(a, e.deixou); }, 0) || 1;
+  var html = "", ordem = 0;
+  rank.forEach(function (e) {
+    ordem++;
+    var wV = Math.max(1.5, 100 * e.virou / maxV);
+    html += '<div class="rank-row"><div class="rank-head">'
+      + '<span class="pos num">' + String(ordem).padStart(2, "0") + '</span>'
+      + '<span class="uf">' + e.label + (e.ano === "2025" ? ' <small style="color:var(--vazio)">· 2025</small>' : '') + '</span>'
+      + '<span class="val num">' + resumo(e.virou) + '</span></div>'
+      + '<div class="bars"><div class="bar-track"><div class="bar" style="width:' + wV + '%"></div></div>';
+    if (e.deixou > 0) {
+      var wD = Math.max(1.5, 100 * e.deixou / maxD);
+      html += '<div class="bar-track"><div class="bar deixou" style="width:' + wD + '%"></div></div>';
+    } else {
+      html += '<div class="bar-track"><div class="bar-zero-fill"></div></div>';
+    }
+    html += '</div></div>';
+  });
+  document.getElementById("rank-list").innerHTML = html;
+
+  /* composição Brasil (virou) */
+  var br = {};
+  ok.forEach(function (e) {
+    e.virou_classes.forEach(function (c) {
+      var k = c.classe_id + "|" + c.classe;
+      br[k] = (br[k] || 0) + c.area;
+    });
+  });
+  var comps = Object.keys(br).map(function (k) {
+    var p = k.split("|");
+    return { classe: p[1], id: +p[0], area: br[k] };
+  }).sort(function (a, b) { return b.area - a.area; });
+  var top = comps.slice(0, 8), resto = comps.slice(8);
+  var segs = top.concat([{ classe: "Outras classes", id: null, area: resto.reduce(function (a, c) { return a + c.area; }, 0) }]);
+  var barEl = document.getElementById("comp-bar");
+  barEl.innerHTML = segs.map(function (c) {
+    var cor = c.id === null ? "#c3cdc6" : CORES[c.id] || corCls(c);
+    return '<span class="seg" style="flex:' + c.area.toFixed(2) + ';background:' + cor + '" title="' + c.classe + '"></span>';
+  }).join("");
+  document.getElementById("comp-legend").innerHTML = segs.map(function (c) {
+    var cor = c.id === null ? "#c3cdc6" : CORES[c.id] || corCls(c);
+    return '<div class="comp-item"><span class="sw" style="background:' + cor + '"></span>'
+      + '<span class="nm">' + c.classe + '</span><span class="pv num">' + (100 * c.area / T.virou).toFixed(1).replace(".", ",") + '%</span></div>';
+  }).join("");
+
+  /* ficha por estado */
+  var sel = document.getElementById("estado-select");
+  rank.forEach(function (e, i) {
+    var o = document.createElement("option");
+    o.value = e.uf;
+    o.textContent = String(i + 1).padStart(2, "0") + " · " + e.label + " — " + resumo(e.virou);
+    sel.appendChild(o);
+  });
+  var alvo = rank[0] ? rank[0].uf : null;
+  sel.value = alvo;
+
+  function renderEstado() {
+    var e = ES.filter(function (x) { return x.uf === sel.value || x.label === sel.value; })[0]
+      || ES.filter(function (x) { return x.comDados; })[0];
+    var panel = document.getElementById("state-panel");
+    if (!e || (!e.virou && !e.deixou && !e.perm)) {
+      panel.innerHTML = '<div class="state-empty">Sem dados processados para esta unidade federativa ainda — a linha entrará na página quando o levantamento for concluído.</div>';
+      return;
+    }
+    var tot = '<div class="state-tot">'
+      + '<div class="kv"><div class="k">Virou soja</div><div class="n num">' + ha(e.virou) + '</div></div>'
+      + '<div class="kv"><div class="k">Deixou de ser soja</div><div class="n num">' + ha(e.deixou) + '</div></div>'
+      + '<div class="kv"><div class="k">Permaneceu soja</div><div class="n num">' + ha(e.perm) + '</div></div>'
+      + '<div class="kv"><div class="k">Saldo</div><div class="n num">' + ha(e.virou - e.deixou) + '</div></div>'
+      + '</div>';
+    function coluna(titulo, hint, classes, emptyMsg) {
+      if (!classes.length) return '<div class="state-cols-col"><h3>' + titulo + '</h3><p class="hint">' + emptyMsg + '</p></div>';
+      var max = classes[0].area;
+      return '<div class="state-cols-col"><h3>' + titulo + '</h3><p class="hint">' + hint + '</p>'
+        + '<div class="cls-list">' + classes.slice(0, 10).map(function (c) {
+          var cor = CORES[c.classe_id] || corCls(c);
+          return '<div class="cls-item"><span class="sw" style="background:' + cor + '"></span>'
+            + '<div class="line"><span class="nm">' + c.classe + '</span><span class="v num">' + ha(c.area) + '</span></div>'
+            + '<div class="cbar"><i style="width:' + Math.max(1.5, 100 * c.area / max).toFixed(1) + '%;background:' + cor + '"></i></div></div>';
+        }).join("") + '</div></div>';
+    }
+    panel.innerHTML = tot
+      + '<div class="state-cols">'
+      + coluna("Origem da soja nova", "Em que uso a terra estava antes de virar soja (2018).", e.virou_classes, "Nenhuma área virou soja nesta UF na janela analisada.")
+      + coluna("Destino da soja perdida", "Para qual uso a terra foi quando deixou de ser soja (2024).", e.deixou_classes, "Nenhuma área deixou de ser soja nesta UF na janela analisada.")
+      + '</div>';
+  }
+  sel.addEventListener("change", renderEstado);
+  renderEstado();
+})();
+</script>

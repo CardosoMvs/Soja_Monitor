@@ -1,0 +1,30 @@
+transicao,classe_id,classe_nome,ano_origem,ano_destino,area_ha
+Virou soja (origem = uso em 2018),3,Formação Florestal,2018,2024,2964.5916055480916
+Virou soja (origem = uso em 2018),4,Formação Savânica,2018,2024,148563.68273636236
+Virou soja (origem = uso em 2018),9,Silvicultura,2018,2024,1186.5009974609366
+Virou soja (origem = uso em 2018),11,Campo Alagado e Área Pantanosa,2018,2024,828.006169000244
+Virou soja (origem = uso em 2018),12,Formação Campestre,2018,2024,26788.890039340655
+Virou soja (origem = uso em 2018),15,Pastagem,2018,2024,59310.97449269933
+Virou soja (origem = uso em 2018),21,Mosaico de Usos,2018,2024,80416.26536315843
+Virou soja (origem = uso em 2018),24,Área Urbanizada,2018,2024,24.999291540527338
+Virou soja (origem = uso em 2018),25,Outras Áreas não Vegetadas,2018,2024,2727.5254263040947
+Virou soja (origem = uso em 2018),33,"Rio, Lago e Oceano",2018,2024,523.5064202697754
+Virou soja (origem = uso em 2018),41,Outras Lavouras Temporárias,2018,2024,491193.28510474303
+Virou soja (origem = uso em 2018),46,Café,2018,2024,2689.7631473205624
+Virou soja (origem = uso em 2018),48,Outras Lavouras Perenes,2018,2024,467.90062262573167
+Virou soja (origem = uso em 2018),62,Algodão (beta),2018,2024,56516.163157700226
+Deixou de ser soja (destino = uso em 2024),3,Formação Florestal,2018,2024,6.377654405780868
+Deixou de ser soja (destino = uso em 2024),4,Formação Savânica,2018,2024,183.43220003300686
+Deixou de ser soja (destino = uso em 2024),9,Silvicultura,2018,2024,0.6143807018803615
+Deixou de ser soja (destino = uso em 2024),11,Campo Alagado e Área Pantanosa,2018,2024,0.35475988283643534
+Deixou de ser soja (destino = uso em 2024),12,Formação Campestre,2018,2024,6.8038784057617185
+Deixou de ser soja (destino = uso em 2024),15,Pastagem,2018,2024,92.22094827150833
+Deixou de ser soja (destino = uso em 2024),21,Mosaico de Usos,2018,2024,481.54348594659524
+Deixou de ser soja (destino = uso em 2024),24,Área Urbanizada,2018,2024,22.972411006553504
+Deixou de ser soja (destino = uso em 2024),25,Outras Áreas não Vegetadas,2018,2024,45.09263459891528
+Deixou de ser soja (destino = uso em 2024),33,"Rio, Lago e Oceano",2018,2024,25.319076763916012
+Deixou de ser soja (destino = uso em 2024),41,Outras Lavouras Temporárias,2018,2024,5475.653061390649
+Deixou de ser soja (destino = uso em 2024),46,Café,2018,2024,8.077473138427735
+Deixou de ser soja (destino = uso em 2024),48,Outras Lavouras Perenes,2018,2024,4.195812329101561
+Deixou de ser soja (destino = uso em 2024),62,Algodão (beta),2018,2024,2488.6687597892746
+Permaneceu soja,39,Soja,2018,2024,1514180.550330292

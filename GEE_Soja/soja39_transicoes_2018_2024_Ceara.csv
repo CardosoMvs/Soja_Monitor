@@ -1,0 +1,13 @@
+transicao,classe_id,classe_nome,ano_origem,ano_destino,area_ha
+Virou soja (origem = uso em 2018),4,Formação Savânica,2018,2024,3.7482465270996093
+Virou soja (origem = uso em 2018),5,Mangue,2018,2024,0.0892854248046875
+Virou soja (origem = uso em 2018),15,Pastagem,2018,2024,1.0713566528320313
+Virou soja (origem = uso em 2018),23,"Praia, Duna e Areal",2018,2024,0.178570849609375
+Virou soja (origem = uso em 2018),25,Outras Áreas não Vegetadas,2018,2024,0.17857061767578125
+Virou soja (origem = uso em 2018),41,Outras Lavouras Temporárias,2018,2024,25.972600512695312
+Deixou de ser soja (destino = uso em 2024),4,Formação Savânica,2018,2024,18.295254907226564
+Deixou de ser soja (destino = uso em 2024),15,Pastagem,2018,2024,8.032717034912109
+Deixou de ser soja (destino = uso em 2024),21,Mosaico de Usos,2018,2024,0.17857005615234375
+Deixou de ser soja (destino = uso em 2024),23,"Praia, Duna e Areal",2018,2024,4.285686743164064
+Deixou de ser soja (destino = uso em 2024),41,Outras Lavouras Temporárias,2018,2024,95.2003224313055
+Permaneceu soja,39,Soja,2018,2024,26.951668316650395

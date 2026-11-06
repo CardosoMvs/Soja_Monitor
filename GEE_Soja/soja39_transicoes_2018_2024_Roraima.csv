@@ -1,0 +1,24 @@
+transicao,classe_id,classe_nome,ano_origem,ano_destino,area_ha
+Virou soja (origem = uso em 2018),3,Formação Florestal,2018,2024,1596.6082744506837
+Virou soja (origem = uso em 2018),4,Formação Savânica,2018,2024,879.3811759643555
+Virou soja (origem = uso em 2018),6,Floresta Alagável,2018,2024,347.8756176574708
+Virou soja (origem = uso em 2018),9,Silvicultura,2018,2024,26.603095971679707
+Virou soja (origem = uso em 2018),11,Campo Alagado e Área Pantanosa,2018,2024,2072.552849359133
+Virou soja (origem = uso em 2018),12,Formação Campestre,2018,2024,59760.076515753186
+Virou soja (origem = uso em 2018),15,Pastagem,2018,2024,12132.965955059808
+Virou soja (origem = uso em 2018),21,Mosaico de Usos,2018,2024,14554.167000421146
+Virou soja (origem = uso em 2018),24,Área Urbanizada,2018,2024,1.7857656127929689
+Virou soja (origem = uso em 2018),25,Outras Áreas não Vegetadas,2018,2024,79.98603060913084
+Virou soja (origem = uso em 2018),31,Aquicultura,2018,2024,0.6247437683105468
+Virou soja (origem = uso em 2018),33,"Rio, Lago e Oceano",2018,2024,28.575402996826178
+Virou soja (origem = uso em 2018),41,Outras Lavouras Temporárias,2018,2024,40395.19910785522
+Deixou de ser soja (destino = uso em 2024),4,Formação Savânica,2018,2024,0.44642845458984376
+Deixou de ser soja (destino = uso em 2024),11,Campo Alagado e Área Pantanosa,2018,2024,0.8032961181640625
+Deixou de ser soja (destino = uso em 2024),12,Formação Campestre,2018,2024,2.0533755126953124
+Deixou de ser soja (destino = uso em 2024),15,Pastagem,2018,2024,18.74686212158203
+Deixou de ser soja (destino = uso em 2024),21,Mosaico de Usos,2018,2024,1.6068558227539063
+Deixou de ser soja (destino = uso em 2024),24,Área Urbanizada,2018,2024,0.0892970458984375
+Deixou de ser soja (destino = uso em 2024),25,Outras Áreas não Vegetadas,2018,2024,0.17858782958984376
+Deixou de ser soja (destino = uso em 2024),33,"Rio, Lago e Oceano",2018,2024,1.60722509765625
+Deixou de ser soja (destino = uso em 2024),41,Outras Lavouras Temporárias,2018,2024,206.3087376647949
+Permaneceu soja,39,Soja,2018,2024,21393.369179968267
